@@ -6,9 +6,8 @@ console.log(tableData);
 // Get reference to the table body
 var tbody = d3.select("tbody");
 
-function showme() {
+function showFilteredData() {
     
-
         tbody.html("");
         // Filter the data by date
         // assign the input date data and get related data.
@@ -47,6 +46,6 @@ function showme() {
 
 
 var button = d3.select("#filter-btn");
-    button.on("click", showme);
+    button.on("click", showFilteredData);
 
-showme();  
+showFilteredData();  
