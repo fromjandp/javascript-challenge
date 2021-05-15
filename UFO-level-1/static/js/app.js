@@ -6,28 +6,8 @@ console.log(tableData);
 // Get reference to the table body
 var tbody = d3.select("tbody");
 
-// Get the UFO sightings data and show in the table columns on the screen.
-tableData.forEach(function (ufoSightingData) {
-    console.log(ufoSightingData);
-
-    // Append one table row(tr) for each UFO sighting
-    var rowOfData = tbody.append("tr");
-    console.log(rowOfData);
-
-    // User 'Object.entries to write each UFO row to the console area
-    Object.entries(ufoSightingData).forEach(function ([key, value]) {
-        console.log("Key, Value");
-        console.log(key, value);
-
-        // Append a table data cell(td) to the row of data
-        var dataCell = rowOfData.append("td");
-        dataCell.text(value);
-    });
-
-
-    // Select the button
-    var button = d3.select("#filter-btn");
-    button.on("click", function () {
+function showme() {
+    
 
         tbody.html("");
         // Filter the data by date
@@ -41,8 +21,12 @@ tableData.forEach(function (ufoSightingData) {
         console.log(inputValue);
 
         // Filter the datetime field based on the input date value
-        var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+        if (inputValue) {
+            var filteredData = tableData.filter(ufoSightingData => ufoSightingData.datetime === inputValue);
         console.log(filteredData);
+        } else {
+            filteredData = tableData;
+        }
 
         filteredData.forEach(function (selections) {
             console.log(selections);
@@ -59,7 +43,10 @@ tableData.forEach(function (ufoSightingData) {
                 dataCell.text(value);
             });
         });
+};
 
 
+var button = d3.select("#filter-btn");
+    button.on("click", showme);
 
-    };
+showme();  
